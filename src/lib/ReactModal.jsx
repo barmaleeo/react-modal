@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import * as ReactDOM from "react-dom";
-//import './ReactModalStyle';
+import './reactModalStyle.scss';
 
 
 export default class ReactModal extends Component {
@@ -50,7 +50,7 @@ export default class ReactModal extends Component {
         const p = this.props;
         const s = this.state;
         return (
-            <div className={'modal fade show'+ s.show}>
+            <div className={'barmaleeo-react-modal modal fade show'+ s.show}>
                 <div className="modal-dialog" role="document">
                     {p.content!==false?
                         <div className="modal-content" ref="content">
@@ -66,18 +66,21 @@ export default class ReactModal extends Component {
                             <div className="modal-body">{p.children}</div>
                             {p.footer!==false && (
                                 <div className="modal-footer">
-                                    {p.actionButton !== false &&
-                                        <button type="button" className="btn btn-default" {...p.actionButtonProps}
-                                                onClick={this.handleClickProceed}>
-                                            {p.actionButtonText?p.actionButtonText:'Proceed'}
-                                        </button>
+                                    <div {...p.footerMsgProps}>{p.footerMsg}</div>
+                                    <div>
+                                        {p.actionButton !== false &&
+                                            <button type="button" className="btn btn-default" {...p.actionButtonProps}
+                                                    onClick={this.handleClickProceed}>
+                                                {p.actionButtonText?p.actionButtonText:'Proceed'}
+                                            </button>
+                                            }
+                                        {p.closeButton !== false &&
+                                            <button type="button" className="btn btn-default"
+                                                    onClick={this.handleClickClose}>
+                                                {p.closeButtonText?p.closeButtonText:'Close'}
+                                            </button>
                                         }
-                                    {p.closeButton !== false &&
-                                        <button type="button" className="btn btn-default"
-                                                onClick={this.handleClickClose}>
-                                            {p.closeButtonText?p.closeButtonText:'Close'}
-                                        </button>
-                                    }
+                                    </div>
                                 </div>
                             )}
                         </div>:

@@ -1,0 +1,16 @@
+div.barmaleeo-react-modal{
+  div.modal-footer{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    >div:first-of-type{
+      flex: 1;
+      padding-right: 10px;
+      text-align: left;
+      font-size: 18px;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}

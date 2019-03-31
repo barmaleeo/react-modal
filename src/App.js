@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import ReactModal from "./lib/ReactModal";
 
@@ -14,7 +13,7 @@ class App extends Component {
                   onClick={()=>{this.setState({show:true})}}>Click to open Modal</button>
         </header>
         {s.show &&
-          <ReactModal caption="Modal caption"
+          <ReactModal caption="Modal caption" footerMsg="footer msg"
                       onClose={() => {this.setState({show:false}) }}>Lorem ipsum</ReactModal>
         }
       </div>

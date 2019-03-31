@@ -3,8 +3,8 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 import React, { Component } from 'react';
-import * as ReactDOM from "react-dom"; //import './ReactModalStyle';
-
+import * as ReactDOM from "react-dom";
+import './reactModalStyle.scss';
 export default class ReactModal extends Component {
   constructor(...args) {
     super(...args);
@@ -73,7 +73,7 @@ export default class ReactModal extends Component {
     const p = this.props;
     const s = this.state;
     return React.createElement("div", {
-      className: 'modal fade show' + s.show
+      className: 'barmaleeo-react-modal modal fade show' + s.show
     }, React.createElement("div", {
       className: "modal-dialog",
       role: "document"
@@ -95,7 +95,7 @@ export default class ReactModal extends Component {
       className: "modal-body"
     }, p.children), p.footer !== false && React.createElement("div", {
       className: "modal-footer"
-    }, p.actionButton !== false && React.createElement("button", _extends({
+    }, React.createElement("div", p.footerMsgProps, p.footerMsg), React.createElement("div", null, p.actionButton !== false && React.createElement("button", _extends({
       type: "button",
       className: "btn btn-default"
     }, p.actionButtonProps, {
@@ -104,7 +104,7 @@ export default class ReactModal extends Component {
       type: "button",
       className: "btn btn-default",
       onClick: this.handleClickClose
-    }, p.closeButtonText ? p.closeButtonText : 'Close'))) : React.createElement("div", {
+    }, p.closeButtonText ? p.closeButtonText : 'Close')))) : React.createElement("div", {
       className: "modal-content",
       ref: "content"
     }, this.props.children)));
