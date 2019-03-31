@@ -1,3 +1,5 @@
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 import React, { Component } from 'react';
@@ -93,11 +95,12 @@ export default class ReactModal extends Component {
       className: "modal-body"
     }, p.children), p.footer !== false && React.createElement("div", {
       className: "modal-footer"
-    }, p.actionButton !== false && React.createElement("button", {
+    }, p.actionButton !== false && React.createElement("button", _extends({
       type: "button",
-      className: "btn btn-default",
-      onClick: this.hasndleClickProceed
-    }, p.actionButtonText ? p.actionButtonText : 'Proceed'), p.closeButton !== false && React.createElement("button", {
+      className: "btn btn-default"
+    }, p.actionButtonProps, {
+      onClick: this.handleClickProceed
+    }), p.actionButtonText ? p.actionButtonText : 'Proceed'), p.closeButton !== false && React.createElement("button", {
       type: "button",
       className: "btn btn-default",
       onClick: this.handleClickClose

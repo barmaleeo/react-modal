@@ -67,8 +67,8 @@ export default class ReactModal extends Component {
                             {p.footer!==false && (
                                 <div className="modal-footer">
                                     {p.actionButton !== false &&
-                                        <button type="button" className="btn btn-default"
-                                                onClick={this.hasndleClickProceed}>
+                                        <button type="button" className="btn btn-default" {...p.actionButtonProps}
+                                                onClick={this.handleClickProceed}>
                                             {p.actionButtonText?p.actionButtonText:'Proceed'}
                                         </button>
                                         }
