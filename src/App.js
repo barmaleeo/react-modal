@@ -14,11 +14,10 @@ class App extends Component {
         </header>
         {s.show &&
           <ReactModal caption="Modal caption" footerMsg="footer msg"
-                      onClose={() => {this.setState({show:false}) }}>Lorem ipsum</ReactModal>
+                      onClose={() => {this.setState({show:false}) }}/>
         }
       </div>
     );
   }
 }
-
 export default App;
