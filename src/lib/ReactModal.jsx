@@ -75,7 +75,7 @@ export default class ReactModal extends Component {
                                             </button>
                                             }
                                         {p.closeButton !== false &&
-                                            <button type="button" className="btn btn-default"
+                                            <button type="button" className="btn btn-default" {...p.closeButtonProps}
                                                     onClick={this.handleClickClose}>
                                                 {p.closeButtonText?p.closeButtonText:'Close'}
                                             </button>

@@ -100,11 +100,12 @@ export default class ReactModal extends Component {
       className: "btn btn-default"
     }, p.actionButtonProps, {
       onClick: this.handleClickProceed
-    }), p.actionButtonText ? p.actionButtonText : 'Proceed'), p.closeButton !== false && React.createElement("button", {
+    }), p.actionButtonText ? p.actionButtonText : 'Proceed'), p.closeButton !== false && React.createElement("button", _extends({
       type: "button",
-      className: "btn btn-default",
+      className: "btn btn-default"
+    }, p.closeButtonProps, {
       onClick: this.handleClickClose
-    }, p.closeButtonText ? p.closeButtonText : 'Close')))) : React.createElement("div", {
+    }), p.closeButtonText ? p.closeButtonText : 'Close')))) : React.createElement("div", {
       className: "modal-content",
       ref: "content"
     }, this.props.children)));
