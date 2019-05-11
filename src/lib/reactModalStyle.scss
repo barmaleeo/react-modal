@@ -1,4 +1,7 @@
 div.barmaleeo-react-modal{
+  &.bs4 {
+    display: block !important;
+  }
   div.modal-footer{
     display:flex;
     align-items: center;

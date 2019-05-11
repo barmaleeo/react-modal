@@ -21,9 +21,9 @@ export default class ReactModal extends Component {
       }, () => {
         setInterval(() => {
           if (typeof self.props.onClose === 'function') {
-            self.setState({
+            self.props.bs4 ? self.setState({
               show: ''
-            }, self.props.onClose);
+            }, self.props.onClose) : self.props.onClose();
           }
         }, 300);
       });
@@ -119,9 +119,9 @@ export default class ReactModal extends Component {
 
     if (p.bs4) {
       return React.createElement("div", {
-        className: 'barmaleeo-react-modal modal fade' + (s.show === 'in' ? ' show' : '')
+        className: 'barmaleeo-react-modal bs4 modal fade' + (s.show.trim() === 'in' ? ' show' : '')
       }, React.createElement("div", {
-        className: "modal-dialog",
+        className: "modal-dialog modal-dialog-scrollable modal-dialog-centered",
         role: "document"
       }, p.content !== false ? this.renderContent() : React.createElement("div", {
         className: "modal-content",
