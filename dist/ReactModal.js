@@ -69,15 +69,9 @@ export default class ReactModal extends Component {
     }
   }
 
-  render() {
+  renderContent() {
     const p = this.props;
-    const s = this.state;
     return React.createElement("div", {
-      className: 'barmaleeo-react-modal modal fade show' + s.show
-    }, React.createElement("div", {
-      className: "modal-dialog",
-      role: "document"
-    }, p.content !== false ? React.createElement("div", {
       className: "modal-content",
       ref: "content"
     }, p.header !== false && React.createElement("div", {
@@ -105,10 +99,34 @@ export default class ReactModal extends Component {
       className: "btn btn-default"
     }, p.closeButtonProps, {
       onClick: this.handleClickClose
-    }), p.closeButtonText ? p.closeButtonText : 'Close')))) : React.createElement("div", {
-      className: "modal-content",
-      ref: "content"
-    }, this.props.children)));
+    }), p.closeButtonText ? p.closeButtonText : 'Close'))));
+  }
+
+  render() {
+    const p = this.props;
+    const s = this.state;
+
+    if (p.bs4) {
+      return React.createElement("div", {
+        className: 'barmaleeo-react-modal modal fade' + (s.show === 'in' ? ' show' : '')
+      }, React.createElement("div", {
+        className: "modal-dialog",
+        role: "document"
+      }, p.content !== false ? this.renderContent() : React.createElement("div", {
+        className: "modal-content",
+        ref: "content"
+      }, this.props.children)));
+    } else {
+      return React.createElement("div", {
+        className: 'barmaleeo-react-modal modal fade show' + s.show
+      }, React.createElement("div", {
+        className: "modal-dialog",
+        role: "document"
+      }, p.content !== false ? this.renderContent() : React.createElement("div", {
+        className: "modal-content",
+        ref: "content"
+      }, this.props.children)));
+    }
   }
 
 }

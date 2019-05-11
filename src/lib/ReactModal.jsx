@@ -45,49 +45,66 @@ export default class ReactModal extends Component {
             p.onProceed();
         }
     };
-
+    renderContent(){
+        const p = this.props;
+        return(
+            <div className="modal-content" ref="content">
+                {p.header!==false && (
+                    <div className="modal-header">
+                        <button type="button" className="close" aria-label="Close"
+                                onClick={this.handleClickClose}>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 className="modal-title">{p.caption}</h4>
+                    </div>
+                )}
+                <div className="modal-body">{p.children}</div>
+                {p.footer!==false && (
+                    <div className="modal-footer">
+                        <div {...p.footerMsgProps}>{p.footerMsg}</div>
+                        <div>
+                            {p.actionButton !== false &&
+                            <button type="button" className="btn btn-default" {...p.actionButtonProps}
+                                    onClick={this.handleClickProceed}>
+                                {p.actionButtonText?p.actionButtonText:'Proceed'}
+                            </button>
+                            }
+                            {p.closeButton !== false &&
+                            <button type="button" className="btn btn-default" {...p.closeButtonProps}
+                                    onClick={this.handleClickClose}>
+                                {p.closeButtonText?p.closeButtonText:'Close'}
+                            </button>
+                            }
+                        </div>
+                    </div>
+                )}
+            </div>
+        )
+    }
     render() {
         const p = this.props;
         const s = this.state;
-        return (
-            <div className={'barmaleeo-react-modal modal fade show'+ s.show}>
-                <div className="modal-dialog" role="document">
-                    {p.content!==false?
-                        <div className="modal-content" ref="content">
-                            {p.header!==false && (
-                                <div className="modal-header">
-                                    <button type="button" className="close" aria-label="Close"
-                                            onClick={this.handleClickClose}>
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <h4 className="modal-title">{p.caption}</h4>
-                                </div>
-                            )}
-                            <div className="modal-body">{p.children}</div>
-                            {p.footer!==false && (
-                                <div className="modal-footer">
-                                    <div {...p.footerMsgProps}>{p.footerMsg}</div>
-                                    <div>
-                                        {p.actionButton !== false &&
-                                            <button type="button" className="btn btn-default" {...p.actionButtonProps}
-                                                    onClick={this.handleClickProceed}>
-                                                {p.actionButtonText?p.actionButtonText:'Proceed'}
-                                            </button>
-                                            }
-                                        {p.closeButton !== false &&
-                                            <button type="button" className="btn btn-default" {...p.closeButtonProps}
-                                                    onClick={this.handleClickClose}>
-                                                {p.closeButtonText?p.closeButtonText:'Close'}
-                                            </button>
-                                        }
-                                    </div>
-                                </div>
-                            )}
-                        </div>:
-                        <div className="modal-content" ref="content">{this.props.children}</div>
-                    }
+        if(p.bs4){
+            return (
+                <div className={'barmaleeo-react-modal modal fade'+ (s.show==='in'?' show':'')}>
+                    <div className="modal-dialog" role="document">
+                        {p.content!==false?this.renderContent():
+                            <div className="modal-content" ref="content">{this.props.children}</div>
+                        }
+                    </div>
                 </div>
-            </div>
-        )
+
+            )
+        }else {
+            return (
+                <div className={'barmaleeo-react-modal modal fade show' + s.show}>
+                    <div className="modal-dialog" role="document">
+                        {p.content !== false ? this.renderContent() :
+                            <div className="modal-content" ref="content">{this.props.children}</div>
+                        }
+                    </div>
+                </div>
+            )
+        }
     }
 }
