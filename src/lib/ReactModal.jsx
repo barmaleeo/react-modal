@@ -50,13 +50,21 @@ export default class ReactModal extends Component {
         return(
             <div className="modal-content" ref="content">
                 {p.header!==false && (
-                    <div className="modal-header">
-                        <button type="button" className="close" aria-label="Close"
-                                onClick={this.handleClickClose}>
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 className="modal-title">{p.caption}</h4>
-                    </div>
+                    p.bs4 ?
+                        <div className="modal-header">
+                            <h4 className="modal-title">{p.caption}</h4>
+                            <button type="button" className="close" aria-label="Close"
+                                    onClick={this.handleClickClose}>
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>:
+                        <div className="modal-header">
+                            <button type="button" className="close" aria-label="Close"
+                                    onClick={this.handleClickClose}>
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 className="modal-title">{p.caption}</h4>
+                        </div>
                 )}
                 <div className="modal-body">{p.children}</div>
                 {p.footer!==false && (

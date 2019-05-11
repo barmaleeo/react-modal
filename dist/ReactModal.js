@@ -74,7 +74,18 @@ export default class ReactModal extends Component {
     return React.createElement("div", {
       className: "modal-content",
       ref: "content"
-    }, p.header !== false && React.createElement("div", {
+    }, p.header !== false && (p.bs4 ? React.createElement("div", {
+      className: "modal-header"
+    }, React.createElement("h4", {
+      className: "modal-title"
+    }, p.caption), React.createElement("button", {
+      type: "button",
+      className: "close",
+      "aria-label": "Close",
+      onClick: this.handleClickClose
+    }, React.createElement("span", {
+      "aria-hidden": "true"
+    }, "\xD7"))) : React.createElement("div", {
       className: "modal-header"
     }, React.createElement("button", {
       type: "button",
@@ -85,7 +96,7 @@ export default class ReactModal extends Component {
       "aria-hidden": "true"
     }, "\xD7")), React.createElement("h4", {
       className: "modal-title"
-    }, p.caption)), React.createElement("div", {
+    }, p.caption))), React.createElement("div", {
       className: "modal-body"
     }, p.children), p.footer !== false && React.createElement("div", {
       className: "modal-footer"
