@@ -102,12 +102,12 @@ export default class ReactModal extends Component {
       className: "modal-footer"
     }, React.createElement("div", p.footerMsgProps, p.footerMsg), React.createElement("div", null, p.actionButton !== false && React.createElement("button", _extends({
       type: "button",
-      className: "btn btn-default"
+      className: 'btn btn-' + (p.bs4 ? 'primary' : 'default')
     }, p.actionButtonProps, {
       onClick: this.handleClickProceed
     }), p.actionButtonText ? p.actionButtonText : 'Proceed'), p.closeButton !== false && React.createElement("button", _extends({
       type: "button",
-      className: "btn btn-default"
+      className: 'btn btn-' + (p.bs4 ? 'secondary' : 'default')
     }, p.closeButtonProps, {
       onClick: this.handleClickClose
     }), p.closeButtonText ? p.closeButtonText : 'Close'))));
