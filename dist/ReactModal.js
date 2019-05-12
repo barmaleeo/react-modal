@@ -100,7 +100,9 @@ export default class ReactModal extends Component {
       className: "modal-body"
     }, p.children), p.footer !== false && React.createElement("div", {
       className: "modal-footer"
-    }, React.createElement("div", p.footerMsgProps, p.footerMsg), React.createElement("div", null, p.actionButton !== false && React.createElement("button", _extends({
+    }, React.createElement("div", _extends({
+      title: p.footerMsg
+    }, p.footerMsgProps), p.footerMsg), React.createElement("div", null, p.actionButton !== false && React.createElement("button", _extends({
       type: "button",
       className: 'btn btn-' + (p.bs4 ? 'primary' : 'default')
     }, p.actionButtonProps, {

@@ -71,7 +71,7 @@ export default class ReactModal extends Component {
                 <div className="modal-body">{p.children}</div>
                 {p.footer!==false && (
                     <div className="modal-footer">
-                        <div {...p.footerMsgProps}>{p.footerMsg}</div>
+                        <div title={p.footerMsg} {...p.footerMsgProps}>{p.footerMsg}</div>
                         <div>
                             {p.actionButton !== false &&
                             <button type="button" className={'btn btn-' + (p.bs4?'primary':'default')} {...p.actionButtonProps}

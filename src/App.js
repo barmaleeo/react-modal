@@ -14,7 +14,10 @@ class App extends Component {
         </header>
         {s.show &&
           <ReactModal caption="Modal caption" footerMsg="footer msg"
-                      onClose={() => {this.setState({show:false}) }}/>
+                      onClose={() => {this.setState({show:false}) }}>
+              asdvdsf
+              <div>23232</div>
+          </ReactModal>
         }
       </div>
     );
