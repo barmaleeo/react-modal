@@ -7,32 +7,37 @@ export default class ReactModal extends Component {
     state = {show:'', element:null};
     componentDidMount() {
         const element = ReactDOM.findDOMNode(this.refs.content);
-        window.addEventListener('keyup', this.keyUpListener.bind(this) );
-        window.addEventListener('click', this.clickListener.bind(this) );
+        window.addEventListener('keyup', this.keyUpListener );
+        window.addEventListener('touchstart', this.clickListener );
+        window.addEventListener('mousedown', this.clickListener );
 
         setTimeout(() => {this.setState({show:' in', element:element})},0)
     }
-    keyUpListener(e){
+    keyUpListener = (event) => {
+        const e = event || window.event;
         if(e.code === 'Escape' && this.state.show === ' in'){
             this.handleClickClose()
         }
     };
     componentWillUnmount() {
-        window.removeEventListener('keyup', this.keyUpListener.bind(this) );
-        window.removeEventListener('click', this.clickListener.bind(this) )
+        window.removeEventListener('keyup', this.keyUpListener );
+        window.removeEventListener('touchstart', this.clickListener );
+        window.removeEventListener('mousedown', this.clickListener )
     }
-    clickListener(e){
+    clickListener = (event) => {
+        const e = event || window.event;
         if(this.state.show === ' in' && !this.state.element.contains(e.target)){
-            window.removeEventListener('keyup', this.keyUpListener.bind(this) );
-            window.removeEventListener('click', this.clickListener.bind(this) );
+            window.removeEventListener('keyup', this.keyUpListener );
+            window.removeEventListener('touchstart', this.clickListener );
+            window.removeEventListener('mousedown', this.clickListener );
             this.handleClickClose()
 
         }
-    }
+    };
     handleClickClose = () => {
         const self = this;
         self.setState({show:' out'}, () => {
-            setInterval(() => {
+            setTimeout(() => {
                 if(typeof self.props.onClose === 'function'){
                     self.props.bs4?
                     self.setState({show:''}, self.props.onClose):

@@ -15,6 +15,7 @@ class App extends Component {
         {s.show &&
           <ReactModal caption="Modal caption" footerMsg="footer msg"
                       onClose={() => {this.setState({show:false}) }}>
+              <input className="form-control"/>
               asdvdsf
               <div>23232</div>
           </ReactModal>
