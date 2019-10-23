@@ -14,12 +14,31 @@ export default class ReactModal extends Component {
       element: null
     });
 
+    _defineProperty(this, "keyUpListener", event => {
+      const e = event || window.event;
+
+      if (e.code === 'Escape' && this.state.show === ' in') {
+        this.handleClickClose();
+      }
+    });
+
+    _defineProperty(this, "clickListener", event => {
+      const e = event || window.event;
+
+      if (this.state.show === ' in' && !this.state.element.contains(e.target)) {
+        window.removeEventListener('keyup', this.keyUpListener);
+        window.removeEventListener('touchstart', this.clickListener);
+        window.removeEventListener('mousedown', this.clickListener);
+        this.handleClickClose();
+      }
+    });
+
     _defineProperty(this, "handleClickClose", () => {
       const self = this;
       self.setState({
         show: ' out'
       }, () => {
-        setInterval(() => {
+        setTimeout(() => {
           if (typeof self.props.onClose === 'function') {
             self.props.bs4 ? self.setState({
               show: ''
@@ -40,8 +59,9 @@ export default class ReactModal extends Component {
 
   componentDidMount() {
     const element = ReactDOM.findDOMNode(this.refs.content);
-    window.addEventListener('keyup', this.keyUpListener.bind(this));
-    window.addEventListener('click', this.clickListener.bind(this));
+    window.addEventListener('keyup', this.keyUpListener);
+    window.addEventListener('touchstart', this.clickListener);
+    window.addEventListener('mousedown', this.clickListener);
     setTimeout(() => {
       this.setState({
         show: ' in',
@@ -50,23 +70,10 @@ export default class ReactModal extends Component {
     }, 0);
   }
 
-  keyUpListener(e) {
-    if (e.code === 'Escape' && this.state.show === ' in') {
-      this.handleClickClose();
-    }
-  }
-
   componentWillUnmount() {
-    window.removeEventListener('keyup', this.keyUpListener.bind(this));
-    window.removeEventListener('click', this.clickListener.bind(this));
-  }
-
-  clickListener(e) {
-    if (this.state.show === ' in' && !this.state.element.contains(e.target)) {
-      window.removeEventListener('keyup', this.keyUpListener.bind(this));
-      window.removeEventListener('click', this.clickListener.bind(this));
-      this.handleClickClose();
-    }
+    window.removeEventListener('keyup', this.keyUpListener);
+    window.removeEventListener('touchstart', this.clickListener);
+    window.removeEventListener('mousedown', this.clickListener);
   }
 
   renderContent() {
