@@ -101,7 +101,7 @@ export default class ReactModal extends Component {
         const s = this.state;
         if(p.bs4){
             return (
-                <div className={'barmaleeo-react-modal bs4 modal fade'+ (s.show.trim()==='in'?' show':'')}>
+                <div className={'barmaleeo-react-modal bs4 modal fade'+ (s.show.trim()==='in'?' show':'') +(p.fade?(' fade-'+p.fade):'')}>
                     <div className={'modal-dialog modal-dialog-scrollable modal-dialog-centered'
                     +(p.size?' modal-'+p.size:'')} role="document">
                         {p.content!==false?this.renderContent():
