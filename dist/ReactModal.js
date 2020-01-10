@@ -114,11 +114,13 @@ export default class ReactModal extends Component {
       type: "button",
       className: 'btn btn-' + (p.bs4 ? 'primary' : 'default')
     }, p.actionButtonProps, {
+      disabled: p.actionButtonDisabled,
       onClick: this.handleClickProceed
     }), p.actionButtonText ? p.actionButtonText : 'Proceed'), p.closeButton !== false && React.createElement("button", _extends({
       type: "button",
       className: 'btn btn-' + (p.bs4 ? 'secondary' : 'default')
     }, p.closeButtonProps, {
+      disabled: p.closeButtonDisabled,
       onClick: this.handleClickClose
     }), p.closeButtonText ? p.closeButtonText : 'Close'))));
   }
