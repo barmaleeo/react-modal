@@ -133,7 +133,7 @@ export default class ReactModal extends Component {
       return React.createElement("div", {
         className: 'barmaleeo-react-modal bs4 modal fade' + (s.show.trim() === 'in' ? ' show' : '') + (p.fade ? ' fade-' + p.fade : '')
       }, React.createElement("div", {
-        className: 'modal-dialog modal-dialog-scrollable modal-dialog-centered' + (p.size ? ' modal-' + p.size : ''),
+        className: 'modal-dialog modal-dialog-scrollable' + (p.centered ? ' modal-dialog-centered' : '') + (p.size ? ' modal-' + p.size : ''),
         role: "document"
       }, p.content !== false ? this.renderContent() : React.createElement("div", {
         className: "modal-content",
