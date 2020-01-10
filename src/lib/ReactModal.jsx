@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
-import * as ReactDOM from "react-dom";
+//import * as ReactDOM from "react-dom";
 import './reactModalStyle.scss';
 
 
 export default class ReactModal extends Component {
-    state = {show:'', element:null};
+    state = {show:''};
     componentDidMount() {
-        const element = ReactDOM.findDOMNode(this.refs.content);
+        //const element = ReactDOM.findDOMNode(this.refs.content);
         window.addEventListener('keyup', this.keyUpListener );
         window.addEventListener('touchstart', this.clickListener );
         window.addEventListener('mousedown', this.clickListener );
 
-        setTimeout(() => {this.setState({show:' in', element:element})},0)
+        setTimeout(() => {this.setState({show:' in'})},0)
     }
     keyUpListener = (event) => {
         const e = event || window.event;
@@ -25,14 +25,14 @@ export default class ReactModal extends Component {
         window.removeEventListener('mousedown', this.clickListener )
     }
     clickListener = (event) => {
-        const e = event || window.event;
-        if(this.state.show === ' in' && !this.state.element.contains(e.target)){
+//        const e = event || window.event;
+        // if(this.state.show === ' in' && !this.state.element.contains(e.target)){
             window.removeEventListener('keyup', this.keyUpListener );
             window.removeEventListener('touchstart', this.clickListener );
             window.removeEventListener('mousedown', this.clickListener );
             this.handleClickClose()
 
-        }
+        // }
     };
     handleClickClose = () => {
         const self = this;
@@ -55,7 +55,9 @@ export default class ReactModal extends Component {
     renderContent(){
         const p = this.props;
         return(
-            <div className="modal-content" ref="content">
+            <div className="modal-content"
+                 onMouseDown={this.stopPropagation}
+                 onTouchStart={this.stopPropagation}>
                 {p.header!==false && (
                     p.bs4 ?
                         <div className="modal-header">
@@ -96,6 +98,9 @@ export default class ReactModal extends Component {
             </div>
         )
     }
+    stopPropagation = (e)=> {
+        e.stopPropagation()
+    };
     render() {
         const p = this.props;
         const s = this.state;
@@ -105,7 +110,9 @@ export default class ReactModal extends Component {
                     <div className={'modal-dialog modal-dialog-scrollable modal-dialog-centered'
                     +(p.size?' modal-'+p.size:'')} role="document">
                         {p.content!==false?this.renderContent():
-                            <div className="modal-content" ref="content">{this.props.children}</div>
+                            <div className="modal-content"
+                                 onMouseDown={this.stopPropagation}
+                                 onTouchStart={this.stopPropagation}>{this.props.children}</div>
                         }
                     </div>
                 </div>
@@ -116,7 +123,9 @@ export default class ReactModal extends Component {
                 <div className={'barmaleeo-react-modal modal fade show' + s.show}>
                     <div className={'modal-dialog'+(p.size?' modal-'+p.size:'')} role="document">
                         {p.content !== false ? this.renderContent() :
-                            <div className="modal-content" ref="content">{this.props.children}</div>
+                            <div className="modal-content"
+                                 onMouseDown={this.stopPropagation}
+                                 onTouchStart={this.stopPropagation}>{this.props.children}</div>
                         }
                     </div>
                 </div>
