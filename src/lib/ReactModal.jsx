@@ -1,15 +1,18 @@
 import React, {Component} from 'react';
-//import * as ReactDOM from "react-dom";
 import './reactModalStyle.scss';
 
 
 export default class ReactModal extends Component {
     state = {show:''};
+    constructor(props) {
+        super(props);
+        this.container = React.createRef();
+    }
     componentDidMount() {
-        //const element = ReactDOM.findDOMNode(this.refs.content);
-        window.addEventListener('keyup', this.keyUpListener );
-        window.addEventListener('touchstart', this.clickListener );
-        window.addEventListener('mousedown', this.clickListener );
+
+        window.addEventListener('keyup', this.keyUpListener.bind(this) );
+        window.addEventListener('touchstart', this.clickListener.bind(this) );
+        window.addEventListener('mousedown', this.clickListener.bind(this) );
 
         setTimeout(() => {this.setState({show:' in'})},0)
     }
@@ -25,14 +28,14 @@ export default class ReactModal extends Component {
         window.removeEventListener('mousedown', this.clickListener )
     }
     clickListener = (event) => {
-//        const e = event || window.event;
-        // if(this.state.show === ' in' && !this.state.element.contains(e.target)){
+        const e = event || window.event;
+         if(this.state.show === ' in' && !this.container.current.contains(e.target)){
             window.removeEventListener('keyup', this.keyUpListener );
             window.removeEventListener('touchstart', this.clickListener );
             window.removeEventListener('mousedown', this.clickListener );
             this.handleClickClose()
 
-        // }
+         }
     };
     handleClickClose = () => {
         const self = this;
@@ -55,9 +58,7 @@ export default class ReactModal extends Component {
     renderContent(){
         const p = this.props;
         return(
-            <div className="modal-content"
-                 onMouseDown={this.stopPropagation}
-                 onTouchStart={this.stopPropagation}>
+            <div className="modal-content" ref={this.container}>
                 {p.header!==false && (
                     p.bs4 ?
                         <div className="modal-header">

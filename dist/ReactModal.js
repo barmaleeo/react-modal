@@ -2,12 +2,11 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-import React, { Component } from 'react'; //import * as ReactDOM from "react-dom";
-
+import React, { Component } from 'react';
 import './reactModalStyle.scss';
 export default class ReactModal extends Component {
-  constructor(...args) {
-    super(...args);
+  constructor(props) {
+    super(props);
 
     _defineProperty(this, "state", {
       show: ''
@@ -22,12 +21,14 @@ export default class ReactModal extends Component {
     });
 
     _defineProperty(this, "clickListener", event => {
-      //        const e = event || window.event;
-      // if(this.state.show === ' in' && !this.state.element.contains(e.target)){
-      window.removeEventListener('keyup', this.keyUpListener);
-      window.removeEventListener('touchstart', this.clickListener);
-      window.removeEventListener('mousedown', this.clickListener);
-      this.handleClickClose(); // }
+      const e = event || window.event;
+
+      if (this.state.show === ' in' && !this.container.current.contains(e.target)) {
+        window.removeEventListener('keyup', this.keyUpListener);
+        window.removeEventListener('touchstart', this.clickListener);
+        window.removeEventListener('mousedown', this.clickListener);
+        this.handleClickClose();
+      }
     });
 
     _defineProperty(this, "handleClickClose", () => {
@@ -56,13 +57,14 @@ export default class ReactModal extends Component {
     _defineProperty(this, "stopPropagation", e => {
       e.stopPropagation();
     });
+
+    this.container = React.createRef();
   }
 
   componentDidMount() {
-    //const element = ReactDOM.findDOMNode(this.refs.content);
-    window.addEventListener('keyup', this.keyUpListener);
-    window.addEventListener('touchstart', this.clickListener);
-    window.addEventListener('mousedown', this.clickListener);
+    window.addEventListener('keyup', this.keyUpListener.bind(this));
+    window.addEventListener('touchstart', this.clickListener.bind(this));
+    window.addEventListener('mousedown', this.clickListener.bind(this));
     setTimeout(() => {
       this.setState({
         show: ' in'
@@ -80,8 +82,7 @@ export default class ReactModal extends Component {
     const p = this.props;
     return React.createElement("div", {
       className: "modal-content",
-      onMouseDown: this.stopPropagation,
-      onTouchStart: this.stopPropagation
+      ref: this.container
     }, p.header !== false && (p.bs4 ? React.createElement("div", {
       className: "modal-header"
     }, React.createElement("h4", {
