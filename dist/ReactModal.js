@@ -23,7 +23,7 @@ export default class ReactModal extends Component {
     _defineProperty(this, "clickListener", event => {
       const e = event || window.event;
 
-      if (this.state.show === ' in' && !this.container.current.contains(e.target)) {
+      if (this.state.show === ' in' && this.container.current && !this.container.current.contains(e.target)) {
         window.removeEventListener('keyup', this.keyUpListener);
         window.removeEventListener('touchstart', this.clickListener);
         window.removeEventListener('mousedown', this.clickListener);
