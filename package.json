@@ -3,7 +3,6 @@
   "type": "module",
   "version": "0.2.0",
   "main": "dist/ReactModal.js",
-  "module": "dist/ReactModal.js",
   "files": [
     "dist"
   ],
