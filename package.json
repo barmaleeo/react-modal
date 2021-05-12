@@ -1,7 +1,6 @@
 {
   "name": "react-modal",
-  "type": "module",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "main": "dist/ReactModal.js",
   "module": "dist/ReactModal.js",
   "files": [
@@ -16,7 +15,9 @@
     "react-dom": "^16.11.0",
     "react-scripts": "2.1.8"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@babel/preset-env": "^7.9.6"
+  },
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
