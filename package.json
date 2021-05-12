@@ -1,8 +1,9 @@
 {
   "name": "react-modal",
   "type": "module",
-  "version": "0.3.0",
-  "main": "index.js",
+  "version": "0.3.2",
+  "main": "dist/ReactModal.js",
+  "module": "dist/ReactModal.js",
   "files": [
     "dist"
   ],

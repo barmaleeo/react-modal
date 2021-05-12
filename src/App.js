@@ -13,7 +13,7 @@ class App extends Component {
                   onClick={()=>{this.setState({show:true})}}>Click to open Modal</button>
         </header>
         {s.show &&
-          <ReactModal caption="Modal caption" footerMsg="footer msg"
+          <ReactModal caption="Modal caption" footerMsg="footer msg" bs4
                       onClose={() => {this.setState({show:false}) }}>
               <input className="form-control"/>
               asdvdsf
