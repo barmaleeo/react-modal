@@ -11,6 +11,9 @@ div.barmaleeo-react-modal{
     box-shadow: -7px 10px 44px 6px rgba(0, 0, 0, 0.27);
     border-radius: 5px;
   }
+  div.modal-dialog.fullheight{
+    height: 100%;
+  }
   div.modal-footer{
     display:flex;
     align-items: center;
