@@ -184,7 +184,7 @@ function (_Component) {
       }, "\xD7")), _react.default.createElement("h4", {
         className: "modal-title"
       }, p.caption))), _react.default.createElement("div", {
-        className: "modal-body"
+        className: 'modal-body' + (p.flexColumn ? ' body-flex-column' : '')
       }, p.children), p.footer !== false && _react.default.createElement("div", {
         className: "modal-footer"
       }, _react.default.createElement("div", _extends({

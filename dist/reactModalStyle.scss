@@ -10,6 +10,10 @@ div.barmaleeo-react-modal{
   div.modal-content{
     box-shadow: -7px 10px 44px 6px rgba(0, 0, 0, 0.27);
     border-radius: 5px;
+    .body-flex-column{
+      display: flex;
+      flex-direction: column;
+    }
   }
   div.modal-dialog.fullheight{
     height: 100%;

@@ -77,7 +77,7 @@ export default class ReactModal extends Component {
                             <h4 className="modal-title">{p.caption}</h4>
                         </div>
                 )}
-                <div className="modal-body">{p.children}</div>
+                <div className={'modal-body' + (p.flexColumn?' body-flex-column':'')}>{p.children}</div>
                 {p.footer!==false && (
                     <div className="modal-footer">
                         <div title={p.footerMsg} {...p.footerMsgProps}>{p.footerMsg}</div>
